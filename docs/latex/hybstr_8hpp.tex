@@ -1,0 +1,114 @@
+\doxysection{hybstr.\+hpp File Reference}
+\hypertarget{hybstr_8hpp}{}\label{hybstr_8hpp}\index{hybstr.hpp@{hybstr.hpp}}
+
+
+Hybrid string implementation that can be used in both compile time and runtime.  
+
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$}}
+\begin{DoxyCompactList}\small\item\em Fixed-\/capacity string that will expand on demand. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structhybstr_1_1is__string__impl}{hybstr\+::is\+\_\+string\+\_\+impl$<$ T $>$}}
+\begin{DoxyCompactList}\small\item\em Type trait for detecting \doxylink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structhybstr_1_1is__string__impl_3_01string__impl_3_01_buffer_capacity_00_01_dynamic_expand_capacity_01_4_01_4}{hybstr\+::is\+\_\+string\+\_\+impl$<$ string\+\_\+impl$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$ $>$}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehybstr}{hybstr}}
+\begin{DoxyCompactList}\small\item\em Main interface. \end{DoxyCompactList}\item 
+namespace \mbox{\hyperlink{namespacehybstr_1_1literals}{hybstr\+::literals}}
+\begin{DoxyCompactList}\small\item\em Contains user defined literal operators for creating \textquotesingle{}\doxylink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}\textquotesingle{} objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}\label{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc} 
+{\footnotesize template$<$std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY$>$ }\\constexpr auto {\bfseries hybstr\+::string} ()
+\begin{DoxyCompactList}\small\item\em Creates an empty hybrid string. \end{DoxyCompactList}\item 
+\Hypertarget{namespacehybstr_a1c912430f83981fa03e34fcec295881f}\label{namespacehybstr_a1c912430f83981fa03e34fcec295881f} 
+{\footnotesize template$<$std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY, std\+::size\+\_\+t N$>$ }\\constexpr auto {\bfseries hybstr\+::string} (const char(\&str)\mbox{[}N\mbox{]})
+\begin{DoxyCompactList}\small\item\em Creates a hybrid string from a string literal. \end{DoxyCompactList}\item 
+{\footnotesize template$<$std\+::size\+\_\+t View\+Size = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY, std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY$>$ }\\constexpr auto \mbox{\hyperlink{namespacehybstr_aebe58af4842c6091f38a8f456a488fee}{hybstr\+::string}} (std\+::string\+\_\+view sv) noexcept
+\begin{DoxyCompactList}\small\item\em Creates a hybrid string from a std\+::string\+\_\+view. \end{DoxyCompactList}\item 
+{\footnotesize template$<$std\+::size\+\_\+t Range\+Size = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY, std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY, typename \+\_\+\+Iter$>$ }\\constexpr auto \mbox{\hyperlink{namespacehybstr_a6e0c9a9b75ff1d2f953c1b243f09f892}{hybstr\+::string}} (\+\_\+\+Iter start, \+\_\+\+Iter end) noexcept
+\begin{DoxyCompactList}\small\item\em Creates a hybrid string from an iterator range. \end{DoxyCompactList}\item 
+\Hypertarget{namespacehybstr_a87e84b67e38e3ab0fd53ba0c3ab58910}\label{namespacehybstr_a87e84b67e38e3ab0fd53ba0c3ab58910} 
+{\footnotesize template$<$std\+::size\+\_\+t N$>$ }\\{\bfseries hybstr\+::string\+\_\+impl} (const char(\&)\mbox{[}N\mbox{]}) -\/$>$ string\+\_\+impl$<$ N $>$
+\item 
+{\footnotesize template$<$std\+::size\+\_\+t B1, std\+::size\+\_\+t Dynamic\+Expand\+Capacity1, std\+::size\+\_\+t B2, std\+::size\+\_\+t Dynamic\+Expand\+Capacity2$>$ }\\constexpr auto \mbox{\hyperlink{namespacehybstr_af2c2f48d7104f624ca11c55c65db9cbf}{hybstr\+::operator+}} (const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ B1, Dynamic\+Expand\+Capacity1 $>$ \&s1, const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ B2, Dynamic\+Expand\+Capacity2 $>$ \&s2) noexcept
+\begin{DoxyCompactList}\small\item\em Concatenates two hybrid strings. \end{DoxyCompactList}\item 
+\Hypertarget{namespacehybstr_a51bd27a3dd0dcd667a146492b1bb99c8}\label{namespacehybstr_a51bd27a3dd0dcd667a146492b1bb99c8} 
+{\footnotesize template$<$std\+::size\+\_\+t Buffer\+Capacity, std\+::size\+\_\+t Dynamic\+Expand\+Capacity, std\+::size\+\_\+t N$>$ }\\constexpr auto {\bfseries hybstr\+::operator+} (const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$ \&s, const char(\&str)\mbox{[}N\mbox{]}) noexcept
+\begin{DoxyCompactList}\small\item\em Concatenates a hybrid string with a C-\/style string literal. \end{DoxyCompactList}\item 
+\Hypertarget{namespacehybstr_add737289d87169fee6ae6d803ebf2e90}\label{namespacehybstr_add737289d87169fee6ae6d803ebf2e90} 
+{\footnotesize template$<$std\+::size\+\_\+t Buffer\+Capacity, std\+::size\+\_\+t Dynamic\+Expand\+Capacity, std\+::size\+\_\+t N$>$ }\\constexpr auto {\bfseries hybstr\+::operator+} (const char(\&str)\mbox{[}N\mbox{]}, const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$ \&s) noexcept
+\begin{DoxyCompactList}\small\item\em Concatenates a C-\/style string literal with a hybrid string. \end{DoxyCompactList}\item 
+\Hypertarget{namespacehybstr_a4509ef7ee7946058aef4aa6fe511e7f7}\label{namespacehybstr_a4509ef7ee7946058aef4aa6fe511e7f7} 
+{\footnotesize template$<$std\+::size\+\_\+t Buffer\+Capacity, std\+::size\+\_\+t Dynamic\+Expand\+Capacity$>$ }\\constexpr auto {\bfseries hybstr\+::operator+} (const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$ \&s, char c) noexcept
+\begin{DoxyCompactList}\small\item\em Concatenates a hybrid string with a char. \end{DoxyCompactList}\item 
+\Hypertarget{namespacehybstr_a891bf2daf3610d9362d56fc152f17232}\label{namespacehybstr_a891bf2daf3610d9362d56fc152f17232} 
+{\footnotesize template$<$std\+::size\+\_\+t Buffer\+Capacity, std\+::size\+\_\+t Dynamic\+Expand\+Capacity$>$ }\\constexpr auto {\bfseries hybstr\+::operator+} (char c, const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$ \&s) noexcept
+\begin{DoxyCompactList}\small\item\em Concatenates a hybrid string with a char. \end{DoxyCompactList}\item 
+\Hypertarget{namespacehybstr_a42b4e5560a8b135f84a3c45cb9153397}\label{namespacehybstr_a42b4e5560a8b135f84a3c45cb9153397} 
+{\footnotesize template$<$std\+::size\+\_\+t Buffer\+Capacity, std\+::size\+\_\+t Dynamic\+Expand\+Capacity$>$ }\\constexpr auto {\bfseries hybstr\+::operator+} (const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$ \&s, std\+::string\+\_\+view sv) noexcept
+\begin{DoxyCompactList}\small\item\em Concatenates a hybrid string with a std\+::string\+\_\+view. \end{DoxyCompactList}\item 
+\Hypertarget{namespacehybstr_a22e915dfbc98160137e19511bc5b63a5}\label{namespacehybstr_a22e915dfbc98160137e19511bc5b63a5} 
+{\footnotesize template$<$std\+::size\+\_\+t Buffer\+Capacity, std\+::size\+\_\+t Dynamic\+Expand\+Capacity$>$ }\\constexpr auto {\bfseries hybstr\+::operator+} (std\+::string\+\_\+view sv, const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$ \&s) noexcept
+\begin{DoxyCompactList}\small\item\em Concatenates a std\+::string\+\_\+view with a hybrid string. \end{DoxyCompactList}\item 
+\Hypertarget{namespacehybstr_a545d44f26d81b3f2677f0b1578fd50c0}\label{namespacehybstr_a545d44f26d81b3f2677f0b1578fd50c0} 
+{\footnotesize template$<$std\+::size\+\_\+t B1, std\+::size\+\_\+t D1, std\+::size\+\_\+t B2, std\+::size\+\_\+t D2$>$ }\\constexpr bool {\bfseries hybstr\+::operator==} (const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ B1, D1 $>$ \&s1, const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ B2, D2 $>$ \&s2) noexcept
+\begin{DoxyCompactList}\small\item\em Equality comparison for two hybrid strings. \end{DoxyCompactList}\item 
+\Hypertarget{namespacehybstr_a871819a9390dda215f57aaac21cd9828}\label{namespacehybstr_a871819a9390dda215f57aaac21cd9828} 
+{\footnotesize template$<$std\+::size\+\_\+t B1, std\+::size\+\_\+t D1, std\+::size\+\_\+t B2, std\+::size\+\_\+t D2$>$ }\\constexpr bool {\bfseries hybstr\+::operator!=} (const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ B1, D1 $>$ \&s1, const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ B2, D2 $>$ \&s2) noexcept
+\begin{DoxyCompactList}\small\item\em Inequality comparison for two hybrid strings. \end{DoxyCompactList}\item 
+\Hypertarget{namespacehybstr_af1451cf8885a822e7efb3bd934f71ef7}\label{namespacehybstr_af1451cf8885a822e7efb3bd934f71ef7} 
+{\footnotesize template$<$std\+::size\+\_\+t B1, std\+::size\+\_\+t D1, std\+::size\+\_\+t B2, std\+::size\+\_\+t D2$>$ }\\constexpr auto {\bfseries hybstr\+::operator$<$=$>$} (const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ B1, D1 $>$ \&s1, const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ B2, D2 $>$ \&s2) noexcept
+\begin{DoxyCompactList}\small\item\em Lexicographical three-\/way comparison for hybrid strings. C++20 or above. \end{DoxyCompactList}\item 
+\Hypertarget{namespacehybstr_af8c433a3a5b340d19018b116d6b2c546}\label{namespacehybstr_af8c433a3a5b340d19018b116d6b2c546} 
+{\footnotesize template$<$std\+::size\+\_\+t B1, std\+::size\+\_\+t D1, std\+::size\+\_\+t B2, std\+::size\+\_\+t D2$>$ }\\constexpr bool {\bfseries hybstr\+::operator$<$} (const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ B1, D1 $>$ \&s1, const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ B2, D2 $>$ \&s2) noexcept
+\begin{DoxyCompactList}\small\item\em Less than comparison for two hybrid strings. C++17. \end{DoxyCompactList}\item 
+\Hypertarget{namespacehybstr_a9aee2e0e8e314ca7a3716e433784647b}\label{namespacehybstr_a9aee2e0e8e314ca7a3716e433784647b} 
+{\footnotesize template$<$std\+::size\+\_\+t B1, std\+::size\+\_\+t D1, std\+::size\+\_\+t B2, std\+::size\+\_\+t D2$>$ }\\constexpr bool {\bfseries hybstr\+::operator$<$=} (const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ B1, D1 $>$ \&s1, const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ B2, D2 $>$ \&s2) noexcept
+\begin{DoxyCompactList}\small\item\em Less than or equal to comparison for two hybrid strings. \end{DoxyCompactList}\item 
+\Hypertarget{namespacehybstr_a2ffb118a4578ba5b25db2af2ae76a96f}\label{namespacehybstr_a2ffb118a4578ba5b25db2af2ae76a96f} 
+{\footnotesize template$<$std\+::size\+\_\+t B1, std\+::size\+\_\+t D1, std\+::size\+\_\+t B2, std\+::size\+\_\+t D2$>$ }\\constexpr bool {\bfseries hybstr\+::operator$>$} (const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ B1, D1 $>$ \&s1, const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ B2, D2 $>$ \&s2) noexcept
+\begin{DoxyCompactList}\small\item\em Greater than comparison for two hybrid strings. \end{DoxyCompactList}\item 
+\Hypertarget{namespacehybstr_a465db046a711d660b802e359474f3189}\label{namespacehybstr_a465db046a711d660b802e359474f3189} 
+{\footnotesize template$<$std\+::size\+\_\+t B1, std\+::size\+\_\+t D1, std\+::size\+\_\+t B2, std\+::size\+\_\+t D2$>$ }\\constexpr bool {\bfseries hybstr\+::operator$>$=} (const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ B1, D1 $>$ \&s1, const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ B2, D2 $>$ \&s2) noexcept
+\begin{DoxyCompactList}\small\item\em Greater than or equal to comparison for two hybrid strings. \end{DoxyCompactList}\item 
+{\footnotesize template$<$auto str$>$ }\\consteval auto \mbox{\hyperlink{namespacehybstr_a7217bca3c96cf3208d043ce801aa5f80}{hybstr\+::fit\+\_\+string}} () noexcept
+\begin{DoxyCompactList}\small\item\em Adjusts the compile-\/time buffer size to exactly fit the string content. C++20 or above. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}} str$>$ }\\consteval auto \mbox{\hyperlink{namespacehybstr_1_1literals_acba3559c0c92f0493e855c1878eada57}{hybstr\+::literals\+::operator"{}"{}\+\_\+hyb}} () noexcept
+\begin{DoxyCompactList}\small\item\em User-\/defined literal for creating a \textquotesingle{}\doxylink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}\textquotesingle{}. C++20 or above. \end{DoxyCompactList}\item 
+consteval auto \mbox{\hyperlink{namespacehybstr_1_1literals_a60b404f1a6c501aae561908ac64442ea}{hybstr\+::literals\+::operator"{}"{}\+\_\+hyb}} (const char \texorpdfstring{$\ast$}{*}str, std\+::size\+\_\+t len) noexcept
+\begin{DoxyCompactList}\small\item\em User-\/defined literal for creating a \textquotesingle{}\doxylink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}\textquotesingle{}. C++17. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacehybstr_ae6052ccd94160b75c3621224a2a6f43b}\label{namespacehybstr_ae6052ccd94160b75c3621224a2a6f43b} 
+{\footnotesize template$<$typename T$>$ }\\constexpr bool {\bfseries hybstr\+::is\+\_\+string\+\_\+impl\+\_\+v} = \mbox{\hyperlink{structhybstr_1_1is__string__impl}{is\+\_\+string\+\_\+impl}}$<$T$>$\+::value
+\begin{DoxyCompactList}\small\item\em Shorthand boolean variable for \doxylink{structhybstr_1_1is__string__impl}{is\+\_\+string\+\_\+impl}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Hybrid string implementation that can be used in both compile time and runtime. 
+
+This header defines a {\bfseries{hybrid constexpr string}} type that supports operations in both compile-\/time and runtime environments. It is primarily designed for {\bfseries{constexpr metaprogramming}} and {\bfseries{string literal manipulation}}, so runtime functionality will be limited.
+
+\begin{DoxyNote}{Note}
+Requires {\bfseries{C++17 or later}} -\/ C++20 is recommended, with C++17 is supported with limited constexpr metaprogramming
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+404hasfound (Git\+Hub\+: \href{https://github.com/4o4hasfound}{\texttt{4o4hasfound}})
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+MIT License
+\end{DoxyCopyright}
+\begin{DoxyDate}{Date}
+2025-\/10-\/05 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0 @cpp C++20+ 
+\end{DoxyVersion}

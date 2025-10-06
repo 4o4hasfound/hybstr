@@ -1,0 +1,30 @@
+var namespacehybstr =
+[
+    [ "literals", "namespacehybstr_1_1literals.html", [
+      [ "operator\"\"_hyb", "namespacehybstr_1_1literals.html#acba3559c0c92f0493e855c1878eada57", null ],
+      [ "operator\"\"_hyb", "namespacehybstr_1_1literals.html#a60b404f1a6c501aae561908ac64442ea", null ]
+    ] ],
+    [ "is_string_impl", "structhybstr_1_1is__string__impl.html", null ],
+    [ "is_string_impl< string_impl< BufferCapacity, DynamicExpandCapacity > >", "structhybstr_1_1is__string__impl_3_01string__impl_3_01_buffer_capacity_00_01_dynamic_expand_capacity_01_4_01_4.html", null ],
+    [ "string_impl", "classhybstr_1_1string__impl.html", "classhybstr_1_1string__impl" ],
+    [ "fit_string", "namespacehybstr.html#a7217bca3c96cf3208d043ce801aa5f80", null ],
+    [ "operator!=", "namespacehybstr.html#a871819a9390dda215f57aaac21cd9828", null ],
+    [ "operator+", "namespacehybstr.html#a891bf2daf3610d9362d56fc152f17232", null ],
+    [ "operator+", "namespacehybstr.html#add737289d87169fee6ae6d803ebf2e90", null ],
+    [ "operator+", "namespacehybstr.html#af2c2f48d7104f624ca11c55c65db9cbf", null ],
+    [ "operator+", "namespacehybstr.html#a4509ef7ee7946058aef4aa6fe511e7f7", null ],
+    [ "operator+", "namespacehybstr.html#a51bd27a3dd0dcd667a146492b1bb99c8", null ],
+    [ "operator+", "namespacehybstr.html#a42b4e5560a8b135f84a3c45cb9153397", null ],
+    [ "operator+", "namespacehybstr.html#a22e915dfbc98160137e19511bc5b63a5", null ],
+    [ "operator<", "namespacehybstr.html#af8c433a3a5b340d19018b116d6b2c546", null ],
+    [ "operator<=", "namespacehybstr.html#a9aee2e0e8e314ca7a3716e433784647b", null ],
+    [ "operator<=>", "namespacehybstr.html#af1451cf8885a822e7efb3bd934f71ef7", null ],
+    [ "operator==", "namespacehybstr.html#a545d44f26d81b3f2677f0b1578fd50c0", null ],
+    [ "operator>", "namespacehybstr.html#a2ffb118a4578ba5b25db2af2ae76a96f", null ],
+    [ "operator>=", "namespacehybstr.html#a465db046a711d660b802e359474f3189", null ],
+    [ "string", "namespacehybstr.html#aaa36fa6ddee1b2ae7158e7ca2a5a16dc", null ],
+    [ "string", "namespacehybstr.html#a6e0c9a9b75ff1d2f953c1b243f09f892", null ],
+    [ "string", "namespacehybstr.html#a1c912430f83981fa03e34fcec295881f", null ],
+    [ "string", "namespacehybstr.html#aebe58af4842c6091f38a8f456a488fee", null ],
+    [ "is_string_impl_v", "namespacehybstr.html#ae6052ccd94160b75c3621224a2a6f43b", null ]
+];

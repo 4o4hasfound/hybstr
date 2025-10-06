@@ -1,0 +1,474 @@
+\doxysection{hybstr\+::string\+\_\+impl\texorpdfstring{$<$}{<} Buffer\+Capacity, Dynamic\+Expand\+Capacity \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classhybstr_1_1string__impl}{}\label{classhybstr_1_1string__impl}\index{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}}
+
+
+Fixed-\/capacity string that will expand on demand.  
+
+
+
+
+{\ttfamily \#include $<$hybstr.\+hpp$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhybstr_1_1string__impl_aa1e540d9d62231c5ed92c8152d04934f}\label{classhybstr_1_1string__impl_aa1e540d9d62231c5ed92c8152d04934f} 
+using {\bfseries value\+\_\+type} = char
+\item 
+\Hypertarget{classhybstr_1_1string__impl_aa19477c52d0b380b12d21c7bf8fc6899}\label{classhybstr_1_1string__impl_aa19477c52d0b380b12d21c7bf8fc6899} 
+using {\bfseries reference} = value\+\_\+type\&
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a08b1d86c0008ba3d3d1110b7211aa639}\label{classhybstr_1_1string__impl_a08b1d86c0008ba3d3d1110b7211aa639} 
+using {\bfseries const\+\_\+reference} = const value\+\_\+type\&
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a3f4b0678eef54860b02325e4cb1fbc5c}\label{classhybstr_1_1string__impl_a3f4b0678eef54860b02325e4cb1fbc5c} 
+using {\bfseries size\+\_\+type} = std\+::size\+\_\+t
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a35a97843d8992d39c7af2d2658d014de}\label{classhybstr_1_1string__impl_a35a97843d8992d39c7af2d2658d014de} 
+using {\bfseries view\+\_\+type} = std\+::string\+\_\+view
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a378f28da07b44f1b9f7b690b9879d0a4}\label{classhybstr_1_1string__impl_a378f28da07b44f1b9f7b690b9879d0a4} 
+using {\bfseries pointer} = char\texorpdfstring{$\ast$}{*}
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a25e3af9d060d5e37e49425c032fc270f}\label{classhybstr_1_1string__impl_a25e3af9d060d5e37e49425c032fc270f} 
+using {\bfseries const\+\_\+pointer} = const char\texorpdfstring{$\ast$}{*}
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a099857c0216f1a5a3894ddf73a1d215c}\label{classhybstr_1_1string__impl_a099857c0216f1a5a3894ddf73a1d215c} 
+using {\bfseries iterator} = typename std\+::array$<$char, Buffer\+Capacity + 1$>$\+::iterator
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a7dcb86cbea01028f8a8f6651d591283b}\label{classhybstr_1_1string__impl_a7dcb86cbea01028f8a8f6651d591283b} 
+using {\bfseries const\+\_\+iterator} = typename std\+::array$<$char, Buffer\+Capacity + 1$>$\+::const\+\_\+iterator
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a020930cf92004479a0bb01136a8f3350}\label{classhybstr_1_1string__impl_a020930cf92004479a0bb01136a8f3350} 
+using {\bfseries reverse\+\_\+iterator} = typename std\+::array$<$char, Buffer\+Capacity + 1$>$\+::reverse\+\_\+iterator
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a037bc24662ac32ef223560b7892b2e36}\label{classhybstr_1_1string__impl_a037bc24662ac32ef223560b7892b2e36} 
+using {\bfseries const\+\_\+reverse\+\_\+iterator} = typename std\+::array$<$char, Buffer\+Capacity + 1$>$\+::const\+\_\+reverse\+\_\+iterator
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a2a6bb20901b455e40fdd6fa207b7e45c}\label{classhybstr_1_1string__impl_a2a6bb20901b455e40fdd6fa207b7e45c} 
+constexpr {\bfseries string\+\_\+impl} () noexcept
+\begin{DoxyCompactList}\small\item\em Default constructor. Initializes an empty string. \end{DoxyCompactList}\item 
+{\footnotesize template$<$std\+::size\+\_\+t N$>$ }\\constexpr \mbox{\hyperlink{classhybstr_1_1string__impl_a18e89064d32e06dc4a556dfd6e8bffd4}{string\+\_\+impl}} (const char(\&\mbox{\hyperlink{classhybstr_1_1string__impl_a8f4fd3909fbc7e42b0ec6786e9d8e085}{str}})\mbox{[}N\mbox{]}) noexcept
+\begin{DoxyCompactList}\small\item\em Constructs from a string literal. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classhybstr_1_1string__impl_a4d289ff5271463e30cb5b5d6dfff51b3}{string\+\_\+impl}} (const std\+::size\+\_\+t \&n, char c) noexcept
+\begin{DoxyCompactList}\small\item\em Fills the buffer with a repeated character. \end{DoxyCompactList}\item 
+\Hypertarget{classhybstr_1_1string__impl_ad9da25cdc91a8371e1831da45a79eba1}\label{classhybstr_1_1string__impl_ad9da25cdc91a8371e1831da45a79eba1} 
+constexpr {\bfseries string\+\_\+impl} (std\+::string\+\_\+view sv) noexcept
+\begin{DoxyCompactList}\small\item\em Constructs from a std\+::string\+\_\+view. Copies up to Buffer\+Capacity characters. \end{DoxyCompactList}\item 
+\Hypertarget{classhybstr_1_1string__impl_a5392e308ec30f3c33042d5a05f17e8ff}\label{classhybstr_1_1string__impl_a5392e308ec30f3c33042d5a05f17e8ff} 
+{\footnotesize template$<$typename \+\_\+\+Iter$>$ }\\constexpr {\bfseries string\+\_\+impl} (\+\_\+\+Iter start, \+\_\+\+Iter end) noexcept
+\begin{DoxyCompactList}\small\item\em Constructs from an iterator range. Copies until \textquotesingle{}end\textquotesingle{} or until Buffer\+Capacity is reached. \end{DoxyCompactList}\item 
+\Hypertarget{classhybstr_1_1string__impl_a749ff8024e0024217910746563a72712}\label{classhybstr_1_1string__impl_a749ff8024e0024217910746563a72712} 
+constexpr {\bfseries string\+\_\+impl} (const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}} \&) noexcept=default
+\item 
+\Hypertarget{classhybstr_1_1string__impl_aa1b3cd4d177fad1130a69eed2fee9cdf}\label{classhybstr_1_1string__impl_aa1b3cd4d177fad1130a69eed2fee9cdf} 
+constexpr {\bfseries string\+\_\+impl} (\mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}} \&\&) noexcept=default
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a47596d5c4b5e973b906b939e297f5ea6}\label{classhybstr_1_1string__impl_a47596d5c4b5e973b906b939e297f5ea6} 
+constexpr \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}} \& {\bfseries operator=} (const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}} \&) noexcept=default
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a78591bd424885f093eebb6a971e6d449}\label{classhybstr_1_1string__impl_a78591bd424885f093eebb6a971e6d449} 
+constexpr \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}} \& {\bfseries operator=} (\mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}} \&\&) noexcept=default
+\item 
+constexpr auto \mbox{\hyperlink{classhybstr_1_1string__impl_aeed4bc674fa5a8fb1b436f66e87c0406}{size}} () const noexcept -\/$>$ size\+\_\+type
+\item 
+constexpr auto \mbox{\hyperlink{classhybstr_1_1string__impl_acb6cc7b38ce3355b50972e3cbf143a51}{capacity}} () const noexcept -\/$>$ size\+\_\+type
+\item 
+constexpr auto \mbox{\hyperlink{classhybstr_1_1string__impl_a3563ea31f181a8a3571111a0d0c07055}{empty}} () const noexcept -\/$>$ bool
+\item 
+constexpr auto \mbox{\hyperlink{classhybstr_1_1string__impl_ade5778af83a03fbfcfe3c4827341903e}{data}} () noexcept -\/$>$ pointer
+\item 
+constexpr auto \mbox{\hyperlink{classhybstr_1_1string__impl_a36eb36fa02e1c3d4edda86fcc8b27412}{data}} () const noexcept -\/$>$ const\+\_\+pointer
+\item 
+constexpr auto \mbox{\hyperlink{classhybstr_1_1string__impl_ac2bd32e4eeaa4a4db431b6141436b0bb}{c\+\_\+str}} () const noexcept -\/$>$ const\+\_\+pointer
+\item 
+constexpr auto \mbox{\hyperlink{classhybstr_1_1string__impl_a9abadca8a8fd06de6e762b3bb3930e81}{view}} () const noexcept -\/$>$ view\+\_\+type
+\item 
+auto \mbox{\hyperlink{classhybstr_1_1string__impl_a8f4fd3909fbc7e42b0ec6786e9d8e085}{str}} () const -\/$>$ std\+::string
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a72cfed95e5163134b2b8e8d3670d3402}\label{classhybstr_1_1string__impl_a72cfed95e5163134b2b8e8d3670d3402} 
+constexpr auto {\bfseries operator\mbox{[}$\,$\mbox{]}} (size\+\_\+type i) noexcept -\/$>$ reference
+\begin{DoxyCompactList}\small\item\em Accesses a character by index (mutable). \end{DoxyCompactList}\item 
+\Hypertarget{classhybstr_1_1string__impl_ab2ef09b1511cff09806fcc12a0111eef}\label{classhybstr_1_1string__impl_ab2ef09b1511cff09806fcc12a0111eef} 
+constexpr auto {\bfseries operator\mbox{[}$\,$\mbox{]}} (size\+\_\+type i) const noexcept -\/$>$ const\+\_\+reference
+\begin{DoxyCompactList}\small\item\em Accesses a character by index (const). \end{DoxyCompactList}\item 
+\Hypertarget{classhybstr_1_1string__impl_a2c1ef2d6b390867198f828f08fd62d1f}\label{classhybstr_1_1string__impl_a2c1ef2d6b390867198f828f08fd62d1f} 
+constexpr auto {\bfseries begin} () noexcept -\/$>$ iterator
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a7e245f402b40e313e3f70badb791a496}\label{classhybstr_1_1string__impl_a7e245f402b40e313e3f70badb791a496} 
+constexpr auto {\bfseries begin} () const noexcept -\/$>$ const\+\_\+iterator
+\item 
+\Hypertarget{classhybstr_1_1string__impl_ad88d959c62471fcd97ead165cac498c7}\label{classhybstr_1_1string__impl_ad88d959c62471fcd97ead165cac498c7} 
+constexpr auto {\bfseries cbegin} () const noexcept -\/$>$ const\+\_\+iterator
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a030bd7b1431e6c064279b20dd7e2f20b}\label{classhybstr_1_1string__impl_a030bd7b1431e6c064279b20dd7e2f20b} 
+constexpr auto {\bfseries end} () noexcept -\/$>$ iterator
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a4e210ae4701a36085581a93299940c1e}\label{classhybstr_1_1string__impl_a4e210ae4701a36085581a93299940c1e} 
+constexpr auto {\bfseries end} () const noexcept -\/$>$ const\+\_\+iterator
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a8c6d8201fdf4b8f8782f120c3fce41fd}\label{classhybstr_1_1string__impl_a8c6d8201fdf4b8f8782f120c3fce41fd} 
+constexpr auto {\bfseries cend} () const noexcept -\/$>$ const\+\_\+iterator
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a787ef63f7186a5bb974be0710d64d7ff}\label{classhybstr_1_1string__impl_a787ef63f7186a5bb974be0710d64d7ff} 
+constexpr auto {\bfseries rbegin} () noexcept -\/$>$ reverse\+\_\+iterator
+\item 
+\Hypertarget{classhybstr_1_1string__impl_aee4f16022499bcb0c23a72ce1110ba32}\label{classhybstr_1_1string__impl_aee4f16022499bcb0c23a72ce1110ba32} 
+constexpr auto {\bfseries rbegin} () const noexcept -\/$>$ const\+\_\+reverse\+\_\+iterator
+\item 
+\Hypertarget{classhybstr_1_1string__impl_ab13736af2a7445a2f54278ab8cfe9d6a}\label{classhybstr_1_1string__impl_ab13736af2a7445a2f54278ab8cfe9d6a} 
+constexpr auto {\bfseries crbegin} () const noexcept -\/$>$ const\+\_\+reverse\+\_\+iterator
+\item 
+\Hypertarget{classhybstr_1_1string__impl_acff4ed64cb5381ff2bf5e9316d8d899a}\label{classhybstr_1_1string__impl_acff4ed64cb5381ff2bf5e9316d8d899a} 
+constexpr auto {\bfseries rend} () noexcept -\/$>$ reverse\+\_\+iterator
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a15e16c1a299903f14411eda0280e44c8}\label{classhybstr_1_1string__impl_a15e16c1a299903f14411eda0280e44c8} 
+constexpr auto {\bfseries rend} () const noexcept -\/$>$ const\+\_\+reverse\+\_\+iterator
+\item 
+\Hypertarget{classhybstr_1_1string__impl_a4bb7d69bce2a1331e4fefca8faa8e1c7}\label{classhybstr_1_1string__impl_a4bb7d69bce2a1331e4fefca8faa8e1c7} 
+constexpr auto {\bfseries crend} () const noexcept -\/$>$ const\+\_\+reverse\+\_\+iterator
+\item 
+{\footnotesize template$<$std\+::size\+\_\+t N$>$ }\\constexpr auto \mbox{\hyperlink{classhybstr_1_1string__impl_a82645151bfd8112bf19a5ad4c4ba4e31}{set}} (char c) const noexcept
+\begin{DoxyCompactList}\small\item\em Replaces a character at compile time. \end{DoxyCompactList}\item 
+{\footnotesize template$<$std\+::size\+\_\+t N$>$ }\\constexpr auto \mbox{\hyperlink{classhybstr_1_1string__impl_aa26a31ded4c64c454cc3e3e1f239bee9}{append}} (const char(\&\mbox{\hyperlink{classhybstr_1_1string__impl_a8f4fd3909fbc7e42b0ec6786e9d8e085}{str}})\mbox{[}N\mbox{]}) const noexcept
+\begin{DoxyCompactList}\small\item\em Appends a C-\/style string literal. \end{DoxyCompactList}\item 
+{\footnotesize template$<$std\+::size\+\_\+t Target\+Size = Dynamic\+Expand\+Capacity, std\+::size\+\_\+t N, std\+::size\+\_\+t Expand\+Capacity$>$ }\\constexpr auto \mbox{\hyperlink{classhybstr_1_1string__impl_adcd8670e79e2909d6105438ba08b5507}{append}} (const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ N, Expand\+Capacity $>$ \&other) const noexcept
+\begin{DoxyCompactList}\small\item\em Appends another hybrid string. \end{DoxyCompactList}\item 
+{\footnotesize template$<$std\+::size\+\_\+t Target\+Size = Dynamic\+Expand\+Capacity$>$ }\\constexpr auto \mbox{\hyperlink{classhybstr_1_1string__impl_a72bf760d0f767bcc88c915a242d23abb}{append}} (std\+::string\+\_\+view sv) const noexcept
+\begin{DoxyCompactList}\small\item\em Appends a std\+::string\+\_\+view. \end{DoxyCompactList}\item 
+{\footnotesize template$<$std\+::size\+\_\+t N = 1$>$ }\\constexpr auto \mbox{\hyperlink{classhybstr_1_1string__impl_a98bb27cd4080467470a0b13f60f86483}{append}} (char c) const noexcept
+\begin{DoxyCompactList}\small\item\em Appends one or more repeated characters. \end{DoxyCompactList}\item 
+\Hypertarget{classhybstr_1_1string__impl_a454eb4c90e76e02caa6c55591f27b7e5}\label{classhybstr_1_1string__impl_a454eb4c90e76e02caa6c55591f27b7e5} 
+constexpr auto {\bfseries push\+\_\+back} (char c) const noexcept
+\begin{DoxyCompactList}\small\item\em Appends a single character. \end{DoxyCompactList}\item 
+{\footnotesize template$<$std\+::size\+\_\+t N$>$ }\\constexpr auto \mbox{\hyperlink{classhybstr_1_1string__impl_aa4e5709b15a3e1a8a8b80d4bf31bec9c}{resize}} (char c=\textquotesingle{} \textquotesingle{}) const noexcept
+\begin{DoxyCompactList}\small\item\em Resizes the string to a new compile-\/time capacity. \end{DoxyCompactList}\item 
+\Hypertarget{classhybstr_1_1string__impl_a14fbcb915b6adc9afa2f2b21d890f585}\label{classhybstr_1_1string__impl_a14fbcb915b6adc9afa2f2b21d890f585} 
+{\footnotesize template$<$std\+::size\+\_\+t N$>$ }\\constexpr auto {\bfseries reserve} () const noexcept
+\begin{DoxyCompactList}\small\item\em Ensures compile-\/time capacity is at least N. If current capacity is smaller, a new \doxylink{classhybstr_1_1string__impl}{string\+\_\+impl} is created. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhybstr_1_1string__impl_ae277c84dd06010e285df61848c4e43a3}\label{classhybstr_1_1string__impl_ae277c84dd06010e285df61848c4e43a3} 
+std\+::array$<$ char, Buffer\+Capacity+1 $>$ {\bfseries \+\_\+data} \{\}
+\begin{DoxyCompactList}\small\item\em Internal fixed buffer (+1 for null terminator). \end{DoxyCompactList}\item 
+\Hypertarget{classhybstr_1_1string__impl_a27ec9df182b7a3fc2e04110bd0727a8a}\label{classhybstr_1_1string__impl_a27ec9df182b7a3fc2e04110bd0727a8a} 
+size\+\_\+type {\bfseries \+\_\+size} \{\}
+\begin{DoxyCompactList}\small\item\em Number of characters currently stored. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$std\+::size\+\_\+t Buffer\+Capacity = 0, std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY$>$\newline
+class hybstr\+::string\+\_\+impl$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$}
+Fixed-\/capacity string that will expand on demand. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Buffer\+Capacity} & Number of characters stored in the compile-\/time buffer (excluding the null terminator). \\
+\hline
+{\em Dynamic\+Expand\+Capacity} & Size of the dynamic buffer allocated for runtime operations.\\
+\hline
+\end{DoxyTemplParams}
+Combines a compile-\/time buffer for constexpr evaluation with a dynamic buffer for runtime use. \textquotesingle{}Buffer\+Capacity\textquotesingle{} defines how many characters are stored in the fixed buffer, and \textquotesingle{}Dynamic\+Expand\+Capacity\textquotesingle{} specifies the size of the dynamic region used when handling inputs such as \textquotesingle{}std\+::string\+\_\+view\textquotesingle{} or iterator ranges whose lengths cannot be determined at compile time. The dynamic buffer size can also be customized through template arguments.
+
+This class is not intended to be used directly. Prefer using the factory functions\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ s11\ =\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{hybstr::string}}();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ empty\ string}}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ s12\ =\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{hybstr::string<10>}}();\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ empty\ string\ with\ custom\ dynamic\ expand\ capacity}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ s21\ =\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{hybstr::string}}(\textcolor{stringliteral}{"{}abc"{}});\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ from\ string\ literal}}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ s22\ =\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{hybstr::string<10>}}(\textcolor{stringliteral}{"{}abc"{}});\ \ \ \ \ \ \textcolor{comment}{//\ from\ literal\ with\ custom\ dynamic\ expand\ capacity}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{constexpr}\ std::string\_view\ sv\ =\ \textcolor{stringliteral}{"{}abc"{}};\ \ \ \ \ \textcolor{comment}{//\ non-\/constexpr\ string\ views\ also\ work}}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ s31\ =\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{hybstr::string<3>}}(sv);\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ from\ string\_view\ (specify\ length,\ default\ to\ HYBSTR\_DYNAMIC\_EXPAND\_CAPACITY)}}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ s32\ =\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{hybstr::string<3,\ 10>}}(sv);\ \ \ \ \ \ \textcolor{comment}{//\ from\ string\_view\ with\ custom\ expand\ capacity}}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::string\ \mbox{\hyperlink{classhybstr_1_1string__impl_a8f4fd3909fbc7e42b0ec6786e9d8e085}{str}}\ =\ \textcolor{stringliteral}{"{}Hello\ world"{}};}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ s41\ =\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{hybstr::string<11>}}(\mbox{\hyperlink{classhybstr_1_1string__impl_a8f4fd3909fbc7e42b0ec6786e9d8e085}{str}}.begin(),\ \mbox{\hyperlink{classhybstr_1_1string__impl_a8f4fd3909fbc7e42b0ec6786e9d8e085}{str}}.end());\ \ \ \ \ \ \ \ \textcolor{comment}{//\ from\ iterator\ range\ (specify\ length,\ default\ to\ HYBSTR\_DYNAMIC\_EXPAND\_CAPACITY)}}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ s42\ =\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{hybstr::string<11,\ 10>}}(\mbox{\hyperlink{classhybstr_1_1string__impl_a8f4fd3909fbc7e42b0ec6786e9d8e085}{str}}.begin(),\ \mbox{\hyperlink{classhybstr_1_1string__impl_a8f4fd3909fbc7e42b0ec6786e9d8e085}{str}}.end());\ \ \ \ \textcolor{comment}{//\ from\ iterator\ range\ with\ custom\ expand\ capacity}}
+
+\end{DoxyCode}
+
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ s1\ =\ std::string\_view(\textcolor{stringliteral}{"{}Greetings"{}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Constexpr}}
+\DoxyCodeLine{\textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ s2\ =\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{hybstr::string}}(\textcolor{stringliteral}{"{}Name"{}});}
+\DoxyCodeLine{\textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ s3\ =\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{hybstr::string}}(s1)\ +\ \textcolor{stringliteral}{"{},\ "{}}\ +\ s2;}
+\DoxyCodeLine{\textcolor{keyword}{static\_assert}(s3\ ==\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{hybstr::string}}(\textcolor{stringliteral}{"{}Greetings,\ Name"{}}));}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Run\ time}}
+\DoxyCodeLine{std::string\ s4;}
+\DoxyCodeLine{std::cin\ >>\ s4;}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ s5\ =\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{hybstr::string}}(s1)\ +\ \textcolor{stringliteral}{"{},\ "{}}\ +\ s4;}
+\DoxyCodeLine{assert(s5.view()\ ==\ std::string(s1.begin(),\ s1.end())\ +\ \textcolor{stringliteral}{"{},\ "{}}\ +\ s4);}
+
+\end{DoxyCode}
+ 
+
+\label{doc-constructors}
+\Hypertarget{classhybstr_1_1string__impl_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classhybstr_1_1string__impl_a18e89064d32e06dc4a556dfd6e8bffd4}\index{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}!string\_impl@{string\_impl}}
+\index{string\_impl@{string\_impl}!hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}}
+\doxysubsubsection{\texorpdfstring{string\_impl()}{string\_impl()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classhybstr_1_1string__impl_a18e89064d32e06dc4a556dfd6e8bffd4} 
+template$<$std\+::size\+\_\+t Buffer\+Capacity = 0, std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY$>$ \\
+template$<$std\+::size\+\_\+t N$>$ \\
+\mbox{\hyperlink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$\+::string\+\_\+impl (\begin{DoxyParamCaption}\item[{const char(\&)}]{str}{\mbox{[}\+N\mbox{]}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Constructs from a string literal. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em N} & Number of characters including null terminator. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em str} & Null-\/terminated C-\/style string. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classhybstr_1_1string__impl_a4d289ff5271463e30cb5b5d6dfff51b3}\index{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}!string\_impl@{string\_impl}}
+\index{string\_impl@{string\_impl}!hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}}
+\doxysubsubsection{\texorpdfstring{string\_impl()}{string\_impl()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classhybstr_1_1string__impl_a4d289ff5271463e30cb5b5d6dfff51b3} 
+template$<$std\+::size\+\_\+t Buffer\+Capacity = 0, std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY$>$ \\
+\mbox{\hyperlink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$\+::string\+\_\+impl (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{n}{, }\item[{char}]{c}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Fills the buffer with a repeated character. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Number of characters to fill. \\
+\hline
+{\em c} & Fill character. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classhybstr_1_1string__impl_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhybstr_1_1string__impl_a98bb27cd4080467470a0b13f60f86483}\index{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}!append@{append}}
+\index{append@{append}!hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}}
+\doxysubsubsection{\texorpdfstring{append()}{append()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{classhybstr_1_1string__impl_a98bb27cd4080467470a0b13f60f86483} 
+template$<$std\+::size\+\_\+t Buffer\+Capacity = 0, std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY$>$ \\
+template$<$std\+::size\+\_\+t N = 1$>$ \\
+auto \mbox{\hyperlink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$\+::append (\begin{DoxyParamCaption}\item[{char}]{c}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Appends one or more repeated characters. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em N} & Number of characters to add. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classhybstr_1_1string__impl_aa26a31ded4c64c454cc3e3e1f239bee9}\index{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}!append@{append}}
+\index{append@{append}!hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}}
+\doxysubsubsection{\texorpdfstring{append()}{append()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{classhybstr_1_1string__impl_aa26a31ded4c64c454cc3e3e1f239bee9} 
+template$<$std\+::size\+\_\+t Buffer\+Capacity = 0, std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY$>$ \\
+template$<$std\+::size\+\_\+t N$>$ \\
+auto \mbox{\hyperlink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$\+::append (\begin{DoxyParamCaption}\item[{const char(\&)}]{str}{\mbox{[}\+N\mbox{]}}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Appends a C-\/style string literal. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em N} & Number of characters including null terminator. \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+A new \doxylink{classhybstr_1_1string__impl}{string\+\_\+impl} containing the concatenated result. 
+\end{DoxyReturn}
+\Hypertarget{classhybstr_1_1string__impl_adcd8670e79e2909d6105438ba08b5507}\index{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}!append@{append}}
+\index{append@{append}!hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}}
+\doxysubsubsection{\texorpdfstring{append()}{append()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{classhybstr_1_1string__impl_adcd8670e79e2909d6105438ba08b5507} 
+template$<$std\+::size\+\_\+t Buffer\+Capacity = 0, std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY$>$ \\
+template$<$std\+::size\+\_\+t Target\+Size = Dynamic\+Expand\+Capacity, std\+::size\+\_\+t N, std\+::size\+\_\+t Expand\+Capacity$>$ \\
+auto \mbox{\hyperlink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$\+::append (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhybstr_1_1string__impl}{string\+\_\+impl}}$<$ N, Expand\+Capacity $>$ \&}]{other}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Appends another hybrid string. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Target\+Size} & Buffer expansion size for the result. \\
+\hline
+{\em N} & Buffer\+Capacity of the other string. \\
+\hline
+{\em Expand\+Capacity} & Dynamic capacity of the other string. \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+A new \doxylink{classhybstr_1_1string__impl}{string\+\_\+impl} combining both contents. 
+\end{DoxyReturn}
+\Hypertarget{classhybstr_1_1string__impl_a72bf760d0f767bcc88c915a242d23abb}\index{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}!append@{append}}
+\index{append@{append}!hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}}
+\doxysubsubsection{\texorpdfstring{append()}{append()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{classhybstr_1_1string__impl_a72bf760d0f767bcc88c915a242d23abb} 
+template$<$std\+::size\+\_\+t Buffer\+Capacity = 0, std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY$>$ \\
+template$<$std\+::size\+\_\+t Target\+Size = Dynamic\+Expand\+Capacity$>$ \\
+auto \mbox{\hyperlink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$\+::append (\begin{DoxyParamCaption}\item[{std\+::string\+\_\+view}]{sv}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Appends a std\+::string\+\_\+view. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Target\+Size} & Buffer expansion size for the result. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classhybstr_1_1string__impl_ac2bd32e4eeaa4a4db431b6141436b0bb}\index{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}!c\_str@{c\_str}}
+\index{c\_str@{c\_str}!hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}}
+\doxysubsubsection{\texorpdfstring{c\_str()}{c\_str()}}
+{\footnotesize\ttfamily \label{classhybstr_1_1string__impl_ac2bd32e4eeaa4a4db431b6141436b0bb} 
+template$<$std\+::size\+\_\+t Buffer\+Capacity = 0, std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY$>$ \\
+auto \mbox{\hyperlink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$\+::c\+\_\+str (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$ const\+\_\+pointer   \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Null-\/terminated C-\/string. 
+\end{DoxyReturn}
+\Hypertarget{classhybstr_1_1string__impl_acb6cc7b38ce3355b50972e3cbf143a51}\index{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}!capacity@{capacity}}
+\index{capacity@{capacity}!hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}}
+\doxysubsubsection{\texorpdfstring{capacity()}{capacity()}}
+{\footnotesize\ttfamily \label{classhybstr_1_1string__impl_acb6cc7b38ce3355b50972e3cbf143a51} 
+template$<$std\+::size\+\_\+t Buffer\+Capacity = 0, std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY$>$ \\
+auto \mbox{\hyperlink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$\+::capacity (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$ size\+\_\+type   \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Maximum number of characters in the fixed buffer. 
+\end{DoxyReturn}
+\Hypertarget{classhybstr_1_1string__impl_a36eb36fa02e1c3d4edda86fcc8b27412}\index{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}!data@{data}}
+\index{data@{data}!hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}}
+\doxysubsubsection{\texorpdfstring{data()}{data()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classhybstr_1_1string__impl_a36eb36fa02e1c3d4edda86fcc8b27412} 
+template$<$std\+::size\+\_\+t Buffer\+Capacity = 0, std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY$>$ \\
+auto \mbox{\hyperlink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$\+::data (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$ const\+\_\+pointer   \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Const pointer to internal buffer. 
+\end{DoxyReturn}
+\Hypertarget{classhybstr_1_1string__impl_ade5778af83a03fbfcfe3c4827341903e}\index{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}!data@{data}}
+\index{data@{data}!hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}}
+\doxysubsubsection{\texorpdfstring{data()}{data()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classhybstr_1_1string__impl_ade5778af83a03fbfcfe3c4827341903e} 
+template$<$std\+::size\+\_\+t Buffer\+Capacity = 0, std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY$>$ \\
+auto \mbox{\hyperlink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$\+::data (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) -\/$>$ pointer   \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Mutable pointer to internal buffer. 
+\end{DoxyReturn}
+\Hypertarget{classhybstr_1_1string__impl_a3563ea31f181a8a3571111a0d0c07055}\index{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}!empty@{empty}}
+\index{empty@{empty}!hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily \label{classhybstr_1_1string__impl_a3563ea31f181a8a3571111a0d0c07055} 
+template$<$std\+::size\+\_\+t Buffer\+Capacity = 0, std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY$>$ \\
+auto \mbox{\hyperlink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$\+::empty (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$ bool   \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+True if the string is empty. 
+\end{DoxyReturn}
+\Hypertarget{classhybstr_1_1string__impl_aa4e5709b15a3e1a8a8b80d4bf31bec9c}\index{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}!resize@{resize}}
+\index{resize@{resize}!hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}}
+\doxysubsubsection{\texorpdfstring{resize()}{resize()}}
+{\footnotesize\ttfamily \label{classhybstr_1_1string__impl_aa4e5709b15a3e1a8a8b80d4bf31bec9c} 
+template$<$std\+::size\+\_\+t Buffer\+Capacity = 0, std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY$>$ \\
+template$<$std\+::size\+\_\+t N$>$ \\
+auto \mbox{\hyperlink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$\+::resize (\begin{DoxyParamCaption}\item[{char}]{c}{ = {\ttfamily \textquotesingle{}~\textquotesingle{}}}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Resizes the string to a new compile-\/time capacity. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em N} & New capacity. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em c} & Fill character if expanded. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new \doxylink{classhybstr_1_1string__impl}{string\+\_\+impl} with resized storage. 
+\end{DoxyReturn}
+\Hypertarget{classhybstr_1_1string__impl_a82645151bfd8112bf19a5ad4c4ba4e31}\index{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}!set@{set}}
+\index{set@{set}!hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \label{classhybstr_1_1string__impl_a82645151bfd8112bf19a5ad4c4ba4e31} 
+template$<$std\+::size\+\_\+t Buffer\+Capacity = 0, std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY$>$ \\
+template$<$std\+::size\+\_\+t N$>$ \\
+auto \mbox{\hyperlink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$\+::set (\begin{DoxyParamCaption}\item[{char}]{c}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Replaces a character at compile time. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em N} & Index to replace (must be less than Buffer\+Capacity). \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em c} & New character value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new \doxylink{classhybstr_1_1string__impl}{string\+\_\+impl} with the modified character. 
+\end{DoxyReturn}
+\Hypertarget{classhybstr_1_1string__impl_aeed4bc674fa5a8fb1b436f66e87c0406}\index{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}!size@{size}}
+\index{size@{size}!hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily \label{classhybstr_1_1string__impl_aeed4bc674fa5a8fb1b436f66e87c0406} 
+template$<$std\+::size\+\_\+t Buffer\+Capacity = 0, std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY$>$ \\
+auto \mbox{\hyperlink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$\+::size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$ size\+\_\+type   \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Number of characters currently stored. 
+\end{DoxyReturn}
+\Hypertarget{classhybstr_1_1string__impl_a8f4fd3909fbc7e42b0ec6786e9d8e085}\index{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}!str@{str}}
+\index{str@{str}!hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}}
+\doxysubsubsection{\texorpdfstring{str()}{str()}}
+{\footnotesize\ttfamily \label{classhybstr_1_1string__impl_a8f4fd3909fbc7e42b0ec6786e9d8e085} 
+template$<$std\+::size\+\_\+t Buffer\+Capacity = 0, std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY$>$ \\
+auto \mbox{\hyperlink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$\+::str (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$ std\+::string   \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+\begin{DoxyReturn}{Returns}
+A new std\+::string copy of the contents (runtime). 
+\end{DoxyReturn}
+\Hypertarget{classhybstr_1_1string__impl_a9abadca8a8fd06de6e762b3bb3930e81}\index{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}!view@{view}}
+\index{view@{view}!hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$@{hybstr::string\_impl$<$ BufferCapacity, DynamicExpandCapacity $>$}}
+\doxysubsubsection{\texorpdfstring{view()}{view()}}
+{\footnotesize\ttfamily \label{classhybstr_1_1string__impl_a9abadca8a8fd06de6e762b3bb3930e81} 
+template$<$std\+::size\+\_\+t Buffer\+Capacity = 0, std\+::size\+\_\+t Dynamic\+Expand\+Capacity = HYBSTR\+\_\+\+DYNAMIC\+\_\+\+EXPAND\+\_\+\+CAPACITY$>$ \\
+auto \mbox{\hyperlink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}}$<$ Buffer\+Capacity, Dynamic\+Expand\+Capacity $>$\+::view (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$ view\+\_\+type   \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Read-\/only view of the string. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hybstr_8hpp}{hybstr.\+hpp}}\end{DoxyCompactItemize}

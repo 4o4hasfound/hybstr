@@ -1,0 +1,127 @@
+\chapter{🪡 hybstr — Hybrid Compile-\/\+Time \& Runtime String Library }
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{🪡 hybstr — Hybrid Compile-\/Time \& Runtime String Library@{🪡 hybstr — Hybrid Compile-\/Time \& Runtime String Library}}
+\label{md__r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md0}%
+
+
+\href{https://en.cppreference.com/w/cpp/20}{\texttt{}} "{}"{} "{}!\mbox{[}\+Header-\/only\mbox{]}(https\+://img.\+shields.\+io/badge/library-\/header-\/-\/only-\/lightgrey.\+svg)"{} \mbox{[}\mbox{]}(LICENSE) \href{https://4o4hasfound.github.io/hybstr/}{\texttt{}}\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{\texorpdfstring{Overview}{Overview}}\label{md__r_e_a_d_m_e_autotoc_md1}
+{\ttfamily hybstr} provides a {\bfseries{hybrid string type}} ({\ttfamily \doxylink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}}) that seamlessly bridges {\bfseries{compile-\/time}} ({\ttfamily constexpr}) and {\bfseries{runtime}} string handling.
+
+Unlike {\ttfamily std\+::string} (purely runtime) or {\ttfamily std\+::string\+\_\+view} (non-\/owning), {\ttfamily \doxylink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}} owns its data and can operate in both environments.
+
+In both compile-\/time and runtime enviroments, all data lives in a fixed buffer known to the compiler.
+
+{\ttfamily hybstr} lets you treat strings as {\bfseries{first-\/class compile-\/time objects}} — useful for metaprogramming, code generation, embedded DSLs, or constexpr evaluation — while still functioning as a normal string type at runtime.\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{Features}{Features}}\label{md__r_e_a_d_m_e_autotoc_md2}
+
+\begin{DoxyItemize}
+\item {\bfseries{Hybrid compile-\/time / runtime}} Works in both {\ttfamily constexpr} and regular runtime expressions.
+\item {\bfseries{Concatenation and modification}} Supports operations like {\ttfamily +}, {\ttfamily append, push\+\_\+back}, and {\ttfamily set\texorpdfstring{$<$}{<}N\texorpdfstring{$>$}{>}()} in both compile time and runtime.
+\item {\bfseries{NTTP}} Can be used as a Non-\/\+Type Template Parameter (NTTP) in C++20 and above.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysection{\texorpdfstring{Examples}{Examples}}\label{md__r_e_a_d_m_e_autotoc_md3}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{\texorpdfstring{Construction}{Construction}}\label{md__r_e_a_d_m_e_autotoc_md4}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{hybstr_8hpp}{hybstr.hpp}}"{}}}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacehybstr}{hybstr}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ compile\ time}}
+\DoxyCodeLine{\textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ s1\ =\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{string}}(\textcolor{stringliteral}{"{}Hello"{}});}
+\DoxyCodeLine{\textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ s2\ =\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{string}}(\textcolor{stringliteral}{"{}World"{}});}
+\DoxyCodeLine{\textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ s3\ =\ s1\ +\ \textcolor{stringliteral}{"{},\ "{}}\ +\ s2\ +\ \textcolor{stringliteral}{"{}!"{}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{static\_assert}(s3\ ==\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{string}}(\textcolor{stringliteral}{"{}Hello,\ World!"{}}));}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysubsection{\texorpdfstring{Literals}{Literals}}\label{md__r_e_a_d_m_e_autotoc_md5}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacehybstr_1_1literals}{hybstr::literals}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ greet\ =\ \textcolor{stringliteral}{"{}Hi"{}}\_hyb\ +\ \textcolor{stringliteral}{"{},\ "{}}\_hyb\ +\ \textcolor{stringliteral}{"{}there"{}}\_hyb;}
+\DoxyCodeLine{\textcolor{keyword}{static\_assert}(greet\ ==\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{hybstr::string}}(\textcolor{stringliteral}{"{}Hi,\ there"{}}));}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysubsection{\texorpdfstring{From Runtime Inputs}{From Runtime Inputs}}\label{md__r_e_a_d_m_e_autotoc_md6}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::string\ name;}
+\DoxyCodeLine{std::cin\ >>\ name;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ s1\ =\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{string}}(\textcolor{stringliteral}{"{}Hello"{}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ msg\ =\ s1\ +\ name;}
+\DoxyCodeLine{std::cout\ <<\ msg.str()\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};\ \textcolor{comment}{//\ outupt\ str}}
+\DoxyCodeLine{std::cout\ <<\ msg.view()\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};\ \textcolor{comment}{//\ output\ view}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md7}{}\doxysubsection{\texorpdfstring{Compile time utils}{Compile time utils}}\label{md__r_e_a_d_m_e_autotoc_md7}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md8}{}\doxysubsubsection{\texorpdfstring{C++20}{C++20}}\label{md__r_e_a_d_m_e_autotoc_md8}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ s\ =\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{hybstr::string}}(\textcolor{stringliteral}{"{}CompileTimeText"{}});}
+\DoxyCodeLine{\textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ fitted\ =\ \mbox{\hyperlink{namespacehybstr_a7217bca3c96cf3208d043ce801aa5f80}{hybstr::fit\_string<s>}}();}
+\DoxyCodeLine{\textcolor{keyword}{static\_assert}(fitted.capacity()\ ==\ fitted.size());}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Or\ combine\ them\ if\ s\ have\ a\ big\ capacity\ with\ little\ size,\ this\ removes\ the\ extra\ memory\ at\ compile\ time}}
+\DoxyCodeLine{\textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ fitted2\ =\ \mbox{\hyperlink{namespacehybstr_a7217bca3c96cf3208d043ce801aa5f80}{hybstr::fit\_string<hybstr::string<100000>}}(\textcolor{stringliteral}{"{}CompileTimeText"{}})>();}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md9}{}\doxysubsubsection{\texorpdfstring{C++17 fallback macro}{C++17 fallback macro}}\label{md__r_e_a_d_m_e_autotoc_md9}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ s\ =\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{hybstr::string}}(\textcolor{stringliteral}{"{}CompileTimeText"{}});}
+\DoxyCodeLine{\textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ fitted\ =\ HYBSTR\_FIT\_STRING(s);}
+\DoxyCodeLine{\textcolor{keyword}{static\_assert}(fitted.capacity()\ ==\ fitted.size());}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Or\ combine\ them\ if\ s\ have\ a\ big\ capacity\ with\ little\ size,\ this\ removes\ the\ extra\ memory\ at\ compile\ time}}
+\DoxyCodeLine{\textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ fitted2\ =\ HYBSTR\_FIT\_STRING(\mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{hybstr::string<100000>}}(\textcolor{stringliteral}{"{}CompileTimeText"{}}));}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md10}{}\doxysubsection{\texorpdfstring{Comparison Operators}{Comparison Operators}}\label{md__r_e_a_d_m_e_autotoc_md10}
+{\ttfamily \doxylink{classhybstr_1_1string__impl}{hybstr\+::string\+\_\+impl}} supports all standard comparison operations\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ a\ =\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{hybstr::string}}(\textcolor{stringliteral}{"{}abc"{}});}
+\DoxyCodeLine{\textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ b\ =\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{hybstr::string}}(\textcolor{stringliteral}{"{}abd"{}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{static\_assert}(a\ <\ b);}
+\DoxyCodeLine{\textcolor{keyword}{static\_assert}(a\ !=\ b);}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md11}{}\doxysection{\texorpdfstring{Factory Functions}{Factory Functions}}\label{md__r_e_a_d_m_e_autotoc_md11}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Function  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Function  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description  }\\\cline{1-2}
+\endhead
+{\ttfamily string()}  &Create an empty string.  \\\cline{1-2}
+{\ttfamily string(const char(\&)\mbox{[}N\mbox{]})}  &From string literal.  \\\cline{1-2}
+{\ttfamily string(std\+::string\+\_\+view)}  &From string view.  \\\cline{1-2}
+{\ttfamily string(\+\_\+\+Iter start, \+\_\+\+Iter end)}  &From iterator range.  \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md12}{}\doxysection{\texorpdfstring{Mixed Usage}{Mixed Usage}}\label{md__r_e_a_d_m_e_autotoc_md12}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{hybstr_8hpp}{hybstr.hpp}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacehybstr}{hybstr}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ prefix\ =\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{string}}(\textcolor{stringliteral}{"{}Hello,\ "{}});}
+\DoxyCodeLine{\ \ \ \ std::string\ name;}
+\DoxyCodeLine{\ \ \ \ std::cin\ >>\ name;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Mix\ compile-\/time\ and\ runtime\ strings}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{auto}\ result\ =\ prefix\ +\ \mbox{\hyperlink{namespacehybstr_aaa36fa6ddee1b2ae7158e7ca2a5a16dc}{string}}(name.begin(),\ name.end())\ +\ \textcolor{stringliteral}{"{}!"{}};}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ result.view()\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 

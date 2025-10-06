@@ -8,8 +8,7 @@
  * It is primarily designed for **constexpr metaprogramming** and **string literal manipulation**, so runtime functionality will be limited.
  * 
  * @note
- * Requires **C++20 or later** ¡X C++17 lacks universal mechanisms to detect whether
- * a function is evaluated in a constant expression and provides limited NTTP capabilities.
+ * Requires **C++17 or later** - C++20 is recommended, with C++17 is supported with limited constexpr metaprogramming
  * 
  * @author
  * 404hasfound (GitHub: [4o4hasfound](https://github.com/4o4hasfound))
@@ -24,23 +23,56 @@
 
 #pragma once
 
-#include <algorithm>
 #include <array>
-#include <optional>
-#include <stdexcept>
 #include <string>
-#include <string_view>
-#include <utility>
-#include <type_traits>
+#include <cassert>
 #include <cstddef>
+#include <utility>
+#include <optional>
+#include <algorithm>
+#include <stdexcept>
+#include <string_view>
+#include <type_traits>
 
 #ifndef HYBSTR_DYNAMIC_EXPAND_CAPACITY
 #define HYBSTR_DYNAMIC_EXPAND_CAPACITY 1000
 #endif
- /**
-  * @namespace hybstr
-  * @brief Main interface
-  */
+
+#if defined(_MSC_VER)
+#  define HYBSTR_CPP_STD _MSVC_LANG
+#else
+#  define HYBSTR_CPP_STD __cplusplus
+#endif
+
+#if HYBSTR_CPP_STD >= 202002L
+	#define HYBSTR_CPP_20_OR_ABOVE true
+#else
+	#define HYBSTR_CPP_20_OR_ABOVE false
+#endif
+
+#if !HYBSTR_CPP_20_OR_ABOVE
+	#ifndef consteval
+		#define consteval constexpr
+	#endif
+#endif
+
+#if HYBSTR_CPP_20_OR_ABOVE
+	#include <type_traits>
+	#define HYBSTR_IS_CONSTANT_EVALUATED std::is_constant_evaluated()
+#elif defined(__clang__) || defined(__GNUC__)
+	#define HYBSTR_IS_CONSTANT_EVALUATED __builtin_is_constant_evaluated()
+	#elif defined(_MSC_VER) && _MSC_VER >= 1928
+	#define HYBSTR_IS_CONSTANT_EVALUATED __builtin_is_constant_evaluated()
+#elif defined(__INTEL_LLVM_COMPILER)
+	#define HYBSTR_IS_CONSTANT_EVALUATED __builtin_is_constant_evaluated()
+#else
+	#define HYBSTR_IS_CONSTANT_EVALUATED false
+#endif
+
+/**
+ * @namespace hybstr
+ * @brief Main interface
+ */
 namespace hybstr
 {
 	template<std::size_t DynamicExpandCapacity = HYBSTR_DYNAMIC_EXPAND_CAPACITY>
@@ -65,9 +97,9 @@ namespace hybstr
 	 * @details
 	 * Combines a compile-time buffer for constexpr evaluation with a dynamic buffer
 	 * for runtime use.
-	 * `BufferCapacity` defines how many characters are stored in the fixed buffer,
-	 * and `DynamicExpandCapacity` specifies the size of the dynamic region used when
-	 * handling inputs such as `std::string_view` or iterator ranges whose lengths
+	 * 'BufferCapacity' defines how many characters are stored in the fixed buffer,
+	 * and 'DynamicExpandCapacity' specifies the size of the dynamic region used when
+	 * handling inputs such as 'std::string_view' or iterator ranges whose lengths
 	 * cannot be determined at compile time.
 	 * The dynamic buffer size can also be customized through template arguments.
 	 *
@@ -180,7 +212,7 @@ namespace hybstr
 
 		/**
 		 * @brief Constructs from an iterator range.
-		 * Copies until `end` or until BufferCapacity is reached.
+		 * Copies until 'end' or until BufferCapacity is reached.
 		 */
 		template<typename _Iter>
 		constexpr string_impl(_Iter start, _Iter end) noexcept
@@ -386,7 +418,7 @@ namespace hybstr
 		template<std::size_t TargetSize = DynamicExpandCapacity>
 		[[nodiscard]] constexpr auto append(std::string_view sv) const noexcept
 		{
-			if (std::is_constant_evaluated())
+			if (HYBSTR_IS_CONSTANT_EVALUATED)
 			{
 				string_impl<BufferCapacity + TargetSize, DynamicExpandCapacity> result{};
 				for (std::size_t i = 0; i < _size; ++i)
@@ -403,7 +435,8 @@ namespace hybstr
 			}
 			else
 			{
-				assert(sv.size() < TargetSize, "string_impl overflow; increase the dynamic buffer size");
+				// "string_impl overflow; increase the dynamic buffer size"
+				assert(sv.size() < TargetSize);
 
 				string_impl<BufferCapacity + TargetSize, DynamicExpandCapacity> result{};
 
@@ -508,24 +541,24 @@ namespace hybstr
 	/**
 	 * @brief Concatenates two hybrid strings.
 	 *
-	 * @tparam BufferCapacity1 Capacity of the first string's compile-time buffer.
+	 * @tparam B1 Capacity of the first string's compile-time buffer.
 	 * @tparam DynamicExpandCapacity1 Dynamic capacity of the first string.
-	 * @tparam BufferCapacity2 Capacity of the second string's compile-time buffer.
+	 * @tparam B2 Capacity of the second string's compile-time buffer.
 	 * @tparam DynamicExpandCapacity2 Dynamic capacity of the second string.
 	 *
 	 * @return A new string_impl with combined compile-time and dynamic capacities.
 	 */
 	template<
-		std::size_t BufferCapacity1, std::size_t DynamicExpandCapacity1,
-		std::size_t BufferCapacity2, std::size_t DynamicExpandCapacity2
+		std::size_t B1, std::size_t DynamicExpandCapacity1,
+		std::size_t B2, std::size_t DynamicExpandCapacity2
 	>
 	[[nodiscard]] constexpr auto operator+(
-		const string_impl<BufferCapacity1, DynamicExpandCapacity1>& s1,
-		const string_impl<BufferCapacity2, DynamicExpandCapacity2>& s2
+		const string_impl<B1, DynamicExpandCapacity1>& s1,
+		const string_impl<B2, DynamicExpandCapacity2>& s2
 		) noexcept
 	{
 		string_impl<
-			BufferCapacity1 + BufferCapacity2,
+			B1 + B2,
 			std::max(DynamicExpandCapacity1, DynamicExpandCapacity2)
 		> result{};
 
@@ -708,12 +741,12 @@ namespace hybstr
 	 * @brief Equality comparison for two hybrid strings.
 	 */
 	template<
-		std::size_t BufferCapacity1, std::size_t DynamicExpanCapacity1,
-		std::size_t BufferCapacity2, std::size_t DynamicExpanCapacity2
+		std::size_t B1, std::size_t D1,
+		std::size_t B2, std::size_t D2
 	>
 	[[nodiscard]] constexpr bool operator==(
-		const string_impl<BufferCapacity1, DynamicExpanCapacity1>& s1,
-		const string_impl<BufferCapacity2, DynamicExpanCapacity2>& s2
+		const string_impl<B1, D1>& s1,
+		const string_impl<B2, D2>& s2
 		) noexcept
 	{
 		if (s1._size != s2._size)
@@ -736,27 +769,28 @@ namespace hybstr
 	 * @brief Inequality comparison for two hybrid strings.
 	 */
 	template<
-		std::size_t BufferCapacity1, std::size_t DynamicExpanCapacity1,
-		std::size_t BufferCapacity2, std::size_t DynamicExpanCapacity2
+		std::size_t B1, std::size_t D1,
+		std::size_t B2, std::size_t D2
 	>
 	[[nodiscard]] constexpr bool operator!=(
-		const string_impl<BufferCapacity1, DynamicExpanCapacity1>& s1,
-		const string_impl<BufferCapacity2, DynamicExpanCapacity2>& s2
+		const string_impl<B1, D1>& s1,
+		const string_impl<B2, D2>& s2
 		) noexcept
 	{
 		return !(s1 == s2);
 	}
 
+#if HYBSTR_CPP_20_OR_ABOVE
 	/**
-	 * @brief Lexicographical three-way comparison for hybrid strings.
+	 * @brief Lexicographical three-way comparison for hybrid strings. C++20 or above.
 	 */
 	template<
-		std::size_t BufferCapacity1, std::size_t DynamicExpanCapacity1,
-		std::size_t BufferCapacity2, std::size_t DynamicExpanCapacity2
+		std::size_t B1, std::size_t D1,
+		std::size_t B2, std::size_t D2
 	>
 	[[nodiscard]] constexpr auto operator<=>(
-		const string_impl<BufferCapacity1, DynamicExpanCapacity1>& s1,
-		const string_impl<BufferCapacity2, DynamicExpanCapacity2>& s2
+		const string_impl<B1, D1>& s1,
+		const string_impl<B2, D2>& s2
 		) noexcept
 	{
 		const std::size_t min_size = std::min(s1._size, s2._size);
@@ -770,6 +804,75 @@ namespace hybstr
 		}
 		return s1._size <=> s2._size;
 	}
+
+#else
+	/**
+	 * @brief Less than comparison for two hybrid strings. C++17.
+	 */
+	template<
+		std::size_t B1, std::size_t D1,
+		std::size_t B2, std::size_t D2
+	>
+	[[nodiscard]] constexpr bool operator<(
+		const string_impl<B1, D1>& s1,
+		const string_impl<B2, D2>& s2
+		) noexcept
+	{
+		const std::size_t min_size = std::min(s1._size, s2._size);
+
+		for (std::size_t i = 0; i < min_size; ++i)
+		{
+			if (s1._data[i] < s2._data[i]) return true;
+			else return false;
+		}
+		return s1._size < s2._size;
+	}
+
+	/**
+	 * @brief Less than or equal to comparison for two hybrid strings.
+	 */
+	template<
+		std::size_t B1, std::size_t D1,
+		std::size_t B2, std::size_t D2
+	>
+	[[nodiscard]] constexpr bool operator<=(
+		const string_impl<B1, D1>& s1,
+		const string_impl<B2, D2>& s2
+		) noexcept
+	{
+		return !(s2 < s1);
+	}
+
+	/**
+	 * @brief Greater than comparison for two hybrid strings.
+	 */
+	template<
+		std::size_t B1, std::size_t D1,
+		std::size_t B2, std::size_t D2
+	>
+	[[nodiscard]] constexpr bool operator>(
+		const string_impl<B1, D1>& s1,
+		const string_impl<B2, D2>& s2
+		) noexcept
+	{
+		return s2 < s1;
+	}
+
+	/**
+	 * @brief Greater than or equal to comparison for two hybrid strings.
+	 */
+	template<
+		std::size_t B1, std::size_t D1,
+		std::size_t B2, std::size_t D2
+	>
+	[[nodiscard]] constexpr bool operator>=(
+		const string_impl<B1, D1>& s1,
+		const string_impl<B2, D2>& s2
+	) noexcept
+	{
+		return !(s1 < s2);
+	}
+#endif
 
 	// ======================================================================
 	//                           Traits and Utilities
@@ -787,18 +890,49 @@ namespace hybstr
 	template <typename T>
 	inline constexpr bool is_string_impl_v = is_string_impl<T>::value;
 
+#if HYBSTR_CPP_20_OR_ABOVE
 	/**
-	 * @brief Adjusts the compile-time buffer size to exactly fit the string content.
+	 * @brief Adjusts the compile-time buffer size to exactly fit the string content. C++20 or above.
 	 *
 	 * @tparam str A hybstr::string_impl instance (must be known at compile time).
 	 * @return A new string_impl whose BufferCapacity equals its current size.
 	 */
 	template <auto str>
-	[[nodiscard]] constexpr auto fit_string() noexcept
+	[[nodiscard]] consteval auto fit_string() noexcept
 	{
 		static_assert(is_string_impl_v<std::remove_cvref_t<decltype(str)>>, "Expect a vre::string as input");
 		return str.template resize<str.size()>();
 	}
+#endif
+
+#if HYBSTR_CPP_20_OR_ABOVE
+	/**
+	 * @brief Adjusts the compile-time buffer size to exactly fit the string content. C++20 or above.
+	 *
+	 * @details
+	 * Returns a resized copy of @p str whose buffer capacity equals its current size.
+	 * The expression is 'constexpr' if @p str supports compile-time evaluation.
+	 *
+	 * @param str A 'hybstr::string_impl' instance.
+	 * @return A new 'string_impl' whose buffer capacity matches its current size.
+	 */
+	#define HYBSTR_FIT_STRING(str)\
+		hybstr::fit_string<(str)>()
+#else
+	/**
+	 * @brief Adjusts the compile-time buffer size to exactly fit the string content. C++17.
+	 *
+	 * @details
+	 * C++17 fallback macro version of 'hybstr::fit_string'.
+	 * Returns a resized copy of @p str whose buffer capacity equals its current size.
+	 * The expression is 'constexpr' if @p str supports compile-time evaluation.
+	 *
+	 * @param str A 'hybstr::string_impl' instance.
+	 * @return A new 'string_impl' whose buffer capacity matches its current size.
+	 */
+	#define HYBSTR_FIT_STRING(str) \
+		([&]() constexpr noexcept { return (str).template resize<(str).size()>(); })()
+#endif
 
 	// ======================================================================
 	//                           Factory Functions
@@ -849,27 +983,37 @@ namespace hybstr
 } // namespace hybstr
 
 /**
- * @brief User-defined literal for creating a `hybstr::string_impl`.
- *
- * @details
- * GCC/Clang: Uses NTTP literal operator.
- * MSVC: Fallback using a `std::string_view` constructor.
- *
- * @code{.cpp}
- * using namespace hybstr::literals;
- * constexpr auto s = "Hello"_hyb;
- * static_assert(s == hybstr::string("Hello"));
- * @endcode
+ * @namespace hybstr::literals
+ * @brief Contains user defined literal operators for creating 'hybstr::string_impl' objects
  */
-#if defined(__clang__) || defined(__GNUC__)
-template<hybstr::string_impl str>
-[[nodiscard]] consteval auto operator""_hyb() noexcept
+namespace hybstr::literals
 {
-	return str;
-}
+#if HYBSTR_CPP_20_OR_ABOVE
+	/**
+	 * @brief User-defined literal for creating a 'hybstr::string_impl'. C++20 or above.
+	 * @code{.cpp}
+	 * using namespace hybstr::literals;
+	 * constexpr auto s = "Hello"_hyb;
+	 * static_assert(s == hybstr::string("Hello"));
+	 * @endcode
+	 */
+	template<hybstr::string_impl str>
+	[[nodiscard]] consteval auto operator""_hyb() noexcept
+	{
+		return str;
+	}
 #else
-[[nodiscard]] consteval auto operator""_hyb(const char* str, std::size_t len) noexcept
-{
-	return hybstr::string(std::string_view(str, len));
+	/**
+	 * @brief User-defined literal for creating a 'hybstr::string_impl'. C++17.
+	 * @code{.cpp}
+	 * using namespace hybstr::literals;
+	 * constexpr auto s = "Hello"_hyb;
+	 * static_assert(s == hybstr::string("Hello"));
+	 * @endcode
+	 */
+	[[nodiscard]] consteval auto operator""_hyb(const char* str, std::size_t len) noexcept
+	{
+		return hybstr::string(str, str + len);
+	}
+	#endif
 }
-#endif
