@@ -1,6 +1,6 @@
 # 🪡 hybstr — Hybrid Compile-Time & Runtime String Library
 
-[![C++17](https://img.shields.io/badge/C%2B%2B-20-blue.svg)](https://en.cppreference.com/w/cpp/17)
+[![C++17](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](https://en.cppreference.com/w/cpp/17)
 [![Header-only](https://img.shields.io/badge/library-header--only-lightgrey.svg)](#)
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Documentation](https://img.shields.io/badge/docs-Doxygen-blueviolet.svg)](https://4o4hasfound.github.io/hybstr/)
